@@ -1,0 +1,68 @@
+# Theory for the Program:
+
+The provided program implements Dijkstra's shortest path algorithm to find the shortest distances from a given source vertex to all other vertices in a weighted, undirected graph. Here's an explanation of the program:
+
+1. Header and Libraries:
+   - The program begins by including the necessary libraries. In this case, `#include <bits/stdc++.h>` includes most standard libraries, making it convenient for competitive programming.
+
+2. Function `dijkstra`:
+   - This function takes four parameters:
+     - `vec`: A 2D vector representing the graph.
+     - `vertices`: The total number of vertices in the graph.
+     - `edges`: The total number of edges in the graph.
+     - `source`: The source vertex from which the shortest paths are calculated.
+   - It returns a vector `dist` containing the shortest distances.
+
+3. Creating the Adjacency List:
+   - An unordered map `adj` is created to represent the adjacency list of the graph. It maps a vertex to a list of pairs, where each pair represents a neighbor and its corresponding edge weight.
+
+4. Populating the Adjacency List:
+   - The program iterates over the edges represented by `vec` and adds them to the adjacency list. For each edge (u, v, w), it adds (v, w) to `adj[u]` and (u, w) to `adj[v]`.
+
+5. Initializing Distances:
+   - A vector `dist` of size `vertices` is created and initialized with `INT_MAX` to represent initial distances.
+
+6. Initializing a Set `st`:
+   - A set `st` of pairs `(distance, vertex)` is created. This set will be used to keep track of vertices and their current distances from the source.
+
+7. Setting Source Distance to 0:
+   - The distance of the `source` vertex is set to 0, and `(0, source)` is inserted into the set `st`.
+
+8. Dijkstra's Algorithm Loop:
+   - The program enters a loop that continues until `st` is not empty.
+   - In each iteration, it extracts the top element `(node_distance, top_node)` from `st`.
+   - It then explores the neighbors of `top_node`.
+
+9. Relaxation:
+   - For each neighbor, it checks if the distance through `top_node` is shorter than the current distance stored in `dist`.
+   - If so, it updates the distance and updates `st` accordingly.
+
+10. Returning the Shortest Distances:
+    - Once the loop completes, the function returns the vector `dist` containing the shortest distances from the source vertex to all other vertices.
+
+11. Main Function:
+    - In the `main` function, a sample graph is provided along with the number of vertices, edges, and the source vertex.
+
+12. User Input and Output:
+    - The user is prompted to enter the source vertex.
+    - The program then calls `dijkstra` and prints out the shortest distances from the source vertex to all other vertices.
+
+# Dijkstra's Algorithm Points:
+
+1. Single-Source Shortest Path:
+   - Dijkstra's algorithm finds the shortest paths from a single source vertex to all other vertices in a weighted graph.
+
+2. Greedy Algorithm:
+   - It is a greedy algorithm because at each step, it selects the vertex with the smallest distance and explores its neighbors.
+
+3. Non-Negative Edge Weights:
+   - Dijkstra's algorithm works only for graphs with non-negative edge weights.
+
+4. Maintains a Priority Queue:
+   - It maintains a priority queue (in this case, a set) to efficiently select the vertex with the smallest distance.
+
+5. Optimal Substructure:
+   - The shortest path from the source to any vertex is composed of the shortest path to some intermediate vertex and the shortest path from that vertex to the target vertex.
+
+6. Time Complexity:
+   - With a binary heap, Dijkstra's algorithm has a time complexity of O((V + E) log V), where V is the number of vertices and E is the number of edges.
